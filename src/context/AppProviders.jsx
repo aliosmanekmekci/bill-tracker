@@ -1,9 +1,10 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { Router } from "./Router";
 
 export function AppProviders() {
   return (
     <ChakraProvider>
-      <div>Work In Progress</div>
+      <Router />
     </ChakraProvider>
   );
 }
