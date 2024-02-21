@@ -1,10 +1,13 @@
 import { MantineProvider } from "@mantine/core";
+import { AppLayout } from "../layout";
 import { Router } from "./Router";
 
 export function AppProviders() {
   return (
     <MantineProvider>
-      <Router />
+      <AppLayout>
+        <Router />
+      </AppLayout>
     </MantineProvider>
   );
 }
