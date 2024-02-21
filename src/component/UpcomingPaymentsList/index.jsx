@@ -1,4 +1,4 @@
-import { ActionIcon, Checkbox, Table, rem } from "@mantine/core";
+import { ActionIcon, Button, Checkbox, Table, rem } from "@mantine/core";
 import { IconSettings } from "@tabler/icons-react";
 
 export function UpcomingPaymentsList(props) {
@@ -24,16 +24,9 @@ export function UpcomingPaymentsList(props) {
           }}
         >
           ${record.balance}
-          <ActionIcon
-            variant="default"
-            aria-label="Edit"
-            onClick={() => {
-              // Handle the edit action here
-            }}
-            style={{ marginLeft: "auto" }}
-          >
-            <IconSettings style={{ width: rem(20) }} stroke={1.5} />
-          </ActionIcon>
+          <Button variant="default" color="red" size="xs">
+            Öde
+          </Button>
         </Table.Td>
       </Table.Tr>
     );
