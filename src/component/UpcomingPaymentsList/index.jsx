@@ -1,10 +1,12 @@
-import { ActionIcon, Button, Checkbox, Table, rem } from "@mantine/core";
-import { IconSettings } from "@tabler/icons-react";
+import { Button, Checkbox, Table } from "@mantine/core";
 
 export function UpcomingPaymentsList(props) {
   const records = props.records;
 
   const renderRow = (record) => {
+    const isDeptZero = record.dept === 0;
+    const formatNumber = (num) => Math.max(num, 0);
+
     return (
       <Table.Tr key={record.id}>
         <Table.Td>
@@ -13,9 +15,9 @@ export function UpcomingPaymentsList(props) {
         <Table.Td>{record.date}</Table.Td>
         <Table.Td>{record.type}</Table.Td>
         <Table.Td>{record.description}</Table.Td>
-        <Table.Td>${record.dept}</Table.Td>
-        <Table.Td>${record.delay}</Table.Td>
-        <Table.Td>${record.willRecieve}</Table.Td>
+        <Table.Td>${formatNumber(record.dept)}</Table.Td>
+        <Table.Td>${formatNumber(record.delay)}</Table.Td>
+        <Table.Td>${formatNumber(record.willRecieve)}</Table.Td>
         <Table.Td
           style={{
             display: "flex",
@@ -23,8 +25,8 @@ export function UpcomingPaymentsList(props) {
             alignItems: "center",
           }}
         >
-          ${record.balance}
-          <Button variant="default" color="red" size="xs">
+          ${formatNumber(record.balance)}
+          <Button variant="default" color="red" size="xs" disabled={isDeptZero}>
             Öde
           </Button>
         </Table.Td>

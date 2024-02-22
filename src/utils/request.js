@@ -1,11 +1,11 @@
 export function fetchUpcomingBills() {
-    return Promise.resolve([
+  return Promise.resolve([
     {
       id: 1,
       date: "01.02.2024",
       description: "2024 - Subat ayi aidati ayi",
       type: "Borç",
-      dept: 0.0,
+      dept: 15.0,
       delay: 0.0,
       willRecieve: 0.0,
       balance: 0.0,
@@ -35,7 +35,7 @@ export function fetchUpcomingBills() {
       date: "01.02.2024",
       description: "#9813730 borçlari için kredi karti ile",
       type: "Kira",
-      dept: 0.0,
+      dept: 24.0,
       delay: 0.0,
       willRecieve: 0.0,
       balance: 0.0,
@@ -50,5 +50,5 @@ export function fetchUpcomingBills() {
       willRecieve: 0.0,
       balance: 0.0,
     },
-  ])
+  ]);
 }
