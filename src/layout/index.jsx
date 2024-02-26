@@ -1,12 +1,12 @@
 import { AppShell, MultiSelect, NavLink, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconHome2 } from "@tabler/icons-react";
+import { IconAlignBoxBottomCenterFilled, IconHome2 } from "@tabler/icons-react";
+import { useLocation } from "wouter";
 import "./index.scss";
-import { IconAlignBoxBottomCenterFilled } from "@tabler/icons-react";
 
 export function AppLayout(props) {
   const [opened, { toggle }] = useDisclosure();
-
+  const [location, navigate] = useLocation();
   return (
     <AppShell
       header={{ height: 60 }}
@@ -32,12 +32,15 @@ export function AppLayout(props) {
 
       <AppShell.Navbar p="md">
         <NavLink
-          href="#required-for-focus"
+          onClick={() => navigate("/dashboard")}
+          active={location === "/dashboard"}
           label="Ana Sayfa"
           leftSection={<IconHome2 size="1rem" stroke={1.5} />}
         />
+
         <NavLink
-          href="#required-for-focus"
+          active={location === "/detaylar"}
+          onClick={() => navigate("/detaylar")}
           label="Detaylar"
           leftSection={
             <IconAlignBoxBottomCenterFilled size="1rem" stroke={1.5} />
