@@ -1,7 +1,9 @@
-import { Button, Checkbox, Table } from "@mantine/core";
+import { Button, Checkbox, Modal, Table } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 export function UpcomingPaymentsList(props) {
   const records = props.records;
+  const [opened, { open, close }] = useDisclosure(false);
 
   const renderRow = (record) => {
     const isDeptZero = record.dept === 0;
@@ -26,7 +28,14 @@ export function UpcomingPaymentsList(props) {
           }}
         >
           ${formatNumber(record.balance)}
-          <Button variant="default" color="red" size="xs" disabled={isDeptZero}>
+          <Modal opened={opened} onClose={close} title="Authentication"></Modal>
+          <Button
+            onClick={open}
+            variant="default"
+            color="red"
+            size="xs"
+            disabled={isDeptZero}
+          >
             Öde
           </Button>
         </Table.Td>

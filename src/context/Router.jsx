@@ -1,5 +1,6 @@
 import { Redirect, Route, Switch } from "wouter";
 import { Dashboard } from "../routes/Dashboard";
+import Details from "../routes/Details";
 
 export function Router() {
   return (
@@ -9,6 +10,7 @@ export function Router() {
           <Redirect to="/dashboard" />
         </Route>
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/details" component={Details} />
       </Switch>
       {/* Router will be implemented in here */}
     </>
