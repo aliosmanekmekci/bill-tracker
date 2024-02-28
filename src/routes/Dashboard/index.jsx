@@ -30,8 +30,8 @@ export function Dashboard() {
     console.log("odeme olaylari");
     // await apiyeodemeyaptirt()
     notifications.show({
-      title: "Default notification",
-      message: "Hey there, your code is awesome! 🤥",
+      title: "Ödeme Başarılı!",
+      message: "Bizi tercih ettiğiniz için teşekkür ederiz.",
     });
     // datayi yenile
     fetchBills();
