@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { AppShell, MultiSelect, NavLink, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconAlignBoxBottomCenterFilled, IconHome2 } from "@tabler/icons-react";

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Center, Drawer, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";

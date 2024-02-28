@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button, Checkbox, Table } from "@mantine/core";
 
 export function UpcomingPaymentsList(props) {
@@ -27,7 +28,7 @@ export function UpcomingPaymentsList(props) {
         >
           ${formatNumber(record.balance)}
           <Button
-            onClick={(e) => props.onSelect(record)}
+            onClick={() => props.onSelect(record)}
             variant="default"
             color="red"
             size="xs"
