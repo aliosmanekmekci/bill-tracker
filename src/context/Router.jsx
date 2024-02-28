@@ -12,7 +12,6 @@ export function Router() {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/details" component={Details} />
       </Switch>
-      {/* Router will be implemented in here */}
     </>
   );
 }
