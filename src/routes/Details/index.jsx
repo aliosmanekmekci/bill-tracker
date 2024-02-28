@@ -1,36 +1,24 @@
 import { Accordion } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { fetchUpcomingBills } from "../../utils/request";
 
 export default function Details() {
-    const groceries = [
-      {
-        emoji: "🍎",
-        value: "Apples",
-        description:
-          "Crisp and refreshing fruit. Apples are known for their versatility and nutritional benefits. They come in a variety of flavors and are great for snacking, baking, or adding to salads.",
-      },
-      {
-        emoji: "🍌",
-        value: "Bananas",
-        description:
-          "Naturally sweet and potassium-rich fruit. Bananas are a popular choice for their energy-boosting properties and can be enjoyed as a quick snack, added to smoothies, or used in baking.",
-      },
-      {
-        emoji: "🥦",
-        value: "Broccoli",
-        description:
-          "Nutrient-packed green vegetable. Broccoli is packed with vitamins, minerals, and fiber. It has a distinct flavor and can be enjoyed steamed, roasted, or added to stir-fries.",
-      },
-    ];
-  // See groceries data above
-  const items = groceries.map((item) => (
-    <Accordion.Item key={item.value} value={item.value}>
-      <Accordion.Control icon={item.emoji}>{item.value}</Accordion.Control>
-      <Accordion.Panel>{item.description}</Accordion.Panel>
+  const [bills, setBills] = useState([]);
+  useEffect(() => {
+    fetchUpcomingBills().then((data) => setBills(data));
+  }, []);
+  // See details data above
+  const items = bills.map((bill) => (
+    <Accordion.Item key={bill.id} value={bill.type}>
+      <Accordion.Control>{bill.type}</Accordion.Control>
+      <Accordion.Panel>
+        {bill.description} - Dept: {bill.dept}
+      </Accordion.Panel>
     </Accordion.Item>
   ));
 
   return (
-    <Accordion variant="contained" chevronPosition="left" defaultValue="Apples">
+    <Accordion variant="contained" chevronPosition="left" defaultValue="Borç">
       {items}
     </Accordion>
   );

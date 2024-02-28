@@ -28,7 +28,7 @@ export function UpcomingPaymentsList(props) {
         >
           ${formatNumber(record.balance)}
           <Button
-            onClick={() => props.onSelect(record)}
+            onClick={() => props.onPayBill(record)}
             variant="default"
             color="red"
             size="xs"

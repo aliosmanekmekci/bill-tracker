@@ -44,7 +44,11 @@ export function Dashboard() {
           Hesap Dökümü
         </Title>
       </Center>
-      <UpcomingPaymentsList records={records} onSelect={openPaymentForm} />
+      <UpcomingPaymentsList
+        records={records}
+        onPayBill={openPaymentForm}
+        onShowDetails={(e) => console.log(e, "todo")}
+      />
       <Drawer opened={opened} onClose={close} title="Ödeme">
         <BillPaymentForm onSubmit={onPayBill} />
       </Drawer>
