@@ -11,9 +11,7 @@ export default function Details() {
   const items = bills.map((bill) => (
     <Accordion.Item key={bill.id} value={bill.type}>
       <Accordion.Control>{bill.type}</Accordion.Control>
-      <Accordion.Panel>
-        {bill.description} - Dept: {bill.dept}
-      </Accordion.Panel>
+      <Accordion.Panel>₺{bill.dept}</Accordion.Panel>
     </Accordion.Item>
   ));
 
