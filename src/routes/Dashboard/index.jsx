@@ -17,6 +17,7 @@ export function Dashboard() {
     const bills = await fetchUpcomingBills();
     setRecords(bills);
   };
+  
   useEffect(() => {
     fetchBills();
   }, []);

@@ -34,6 +34,15 @@ export function UpcomingPaymentsList(props) {
             size="xs"
             disabled={isDeptZero}
           >
+            Detay
+          </Button>
+          <Button
+            onClick={() => props.onPayBill(record)}
+            variant="default"
+            color="red"
+            size="xs"
+            disabled={isDeptZero}
+          >
             Öde
           </Button>
         </Table.Td>
