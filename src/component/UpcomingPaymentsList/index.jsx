@@ -16,9 +16,9 @@ export function UpcomingPaymentsList(props) {
         <Table.Td>{record.date}</Table.Td>
         <Table.Td>{record.type}</Table.Td>
         <Table.Td>{record.description}</Table.Td>
-        <Table.Td>${formatNumber(record.dept)}</Table.Td>
-        <Table.Td>${formatNumber(record.delay)}</Table.Td>
-        <Table.Td>${formatNumber(record.willRecieve)}</Table.Td>
+        <Table.Td>₺{formatNumber(record.dept)}</Table.Td>
+        <Table.Td>₺{formatNumber(record.delay)}</Table.Td>
+        <Table.Td>₺{formatNumber(record.willRecieve)}</Table.Td>
         <Table.Td
           style={{
             display: "flex",
@@ -26,7 +26,7 @@ export function UpcomingPaymentsList(props) {
             alignItems: "center",
           }}
         >
-          ${formatNumber(record.balance)}
+          ₺{formatNumber(record.balance)}
           <Button
             onClick={() => props.onPayBill(record)}
             variant="default"
