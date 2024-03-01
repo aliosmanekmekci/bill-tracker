@@ -7,10 +7,14 @@ import { useEffect, useState } from "react";
 import { BillPaymentForm } from "../../component/BillPaymentForm";
 import { UpcomingPaymentsList } from "../../component/UpcomingPaymentsList";
 import { fetchUpcomingBills } from "../../utils/request";
+import { BillDetails } from "../BillDetails";
 
 export function Dashboard() {
   const [records, setRecords] = useState([]);
-  const [opened, { open, close }] = useDisclosure(false);
+  const [paymentOpened, { open: openPayment, close: closePayment }] =
+    useDisclosure(false);
+  const [detailsOpened, { open: openDetails, close: closeDetails }] =
+    useDisclosure(false);
 
   const fetchBills = async () => {
     console.log("bill ler cekildi karsim");
@@ -24,7 +28,7 @@ export function Dashboard() {
 
   const openPaymentForm = (bill) => {
     console.log(bill);
-    open();
+    openPayment();
   };
 
   const onPayBill = (bill) => {
@@ -48,10 +52,16 @@ export function Dashboard() {
       <UpcomingPaymentsList
         records={records}
         onPayBill={openPaymentForm}
-        onShowDetails={(e) => console.log(e, "todo")}
+        onShowDetails={(e) => {
+          console.log(e, "todo");
+          openDetails(); // Open the details drawer
+        }}
       />
-      <Drawer opened={opened} onClose={close} title="Ödeme">
+      <Drawer opened={paymentOpened} onClose={closePayment} title="Ödeme">
         <BillPaymentForm onSubmit={onPayBill} />
+      </Drawer>
+      <Drawer opened={detailsOpened} onClose={closeDetails} title="Detaylar">
+        <BillDetails /> {/* Render the Details component inside the drawer */}
       </Drawer>
     </>
   );

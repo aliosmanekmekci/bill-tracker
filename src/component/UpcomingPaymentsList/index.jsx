@@ -28,7 +28,7 @@ export function UpcomingPaymentsList(props) {
         >
           ₺{formatNumber(record.balance)}
           <Button
-            onClick={() => props.onPayBill(record)}
+            onClick={() => props.onShowDetails(record)}
             variant="default"
             color="red"
             size="xs"
