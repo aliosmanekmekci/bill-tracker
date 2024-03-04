@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Button, Checkbox, Table } from "@mantine/core";
+import { Link } from "wouter";
 
 export function UpcomingPaymentsList(props) {
   const records = props.records;
@@ -13,6 +14,7 @@ export function UpcomingPaymentsList(props) {
         <Table.Td>
           <Checkbox aria-label="Select row" />
         </Table.Td>
+
         <Table.Td>{record.date}</Table.Td>
         <Table.Td>{record.type}</Table.Td>
         <Table.Td>{record.description}</Table.Td>
@@ -27,15 +29,18 @@ export function UpcomingPaymentsList(props) {
           }}
         >
           ₺{formatNumber(record.balance)}
-          <Button
-            onClick={() => props.onShowDetails(record)}
-            variant="default"
-            color="red"
-            size="xs"
-            disabled={isDeptZero}
-          >
-            Detay
-          </Button>
+          <Link href={`/bill/${record.id}`}>
+            <a>
+              <Button
+                variant="default"
+                color="red"
+                size="xs"
+                disabled={isDeptZero}
+              >
+                Detay
+              </Button>
+            </a>
+          </Link>
           <Button
             onClick={() => props.onPayBill(record)}
             variant="default"

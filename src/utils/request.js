@@ -54,6 +54,9 @@ export function fetchUpcomingBills() {
   return Promise.resolve(bills);
 }
 
+// utils/request.js
 export function fetchBill(billId) {
-  return Promise.resolve(bills[0]);
+  // Assuming bills is an array of bill objects
+  const bill = bills.find((bill) => bill.id === parseInt(billId, 10));
+  return Promise.resolve(bill);
 }
