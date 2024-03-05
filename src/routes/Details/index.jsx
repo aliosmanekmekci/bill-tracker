@@ -1,4 +1,4 @@
-import { Accordion, Loader } from "@mantine/core";
+import { Accordion, Image, Loader } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 export default function Details() {
@@ -41,11 +41,14 @@ export default function Details() {
         <Accordion.Control>{newsItem.title}</Accordion.Control>
         <Accordion.Panel>
           {newsItem.description}
-          <img
-            src=" https://static.daktilo.com/sites/496/uploads/2024/03/05/large/5-3.jpg"
-            alt=""
-            width="100px"
-            height="100px"
+          <Image
+            m="auto"
+            maw="300px"
+            radius="md"
+            h={200}
+            w="auto"
+            fit="contain"
+            src={newsItem.image_url}
           />
         </Accordion.Panel>
       </Accordion.Item>
