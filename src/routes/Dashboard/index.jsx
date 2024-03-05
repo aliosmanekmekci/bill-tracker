@@ -17,22 +17,19 @@ export function Dashboard() {
     useDisclosure(false);
 
   const fetchBills = async () => {
-    console.log("bill ler cekildi karsim");
     const bills = await fetchUpcomingBills();
     setRecords(bills);
   };
-  
+
   useEffect(() => {
     fetchBills();
   }, []);
 
   const openPaymentForm = (bill) => {
-    console.log(bill);
     openPayment();
   };
 
   const onPayBill = (bill) => {
-    console.log("odeme olaylari");
     // await apiyeodemeyaptirt()
     notifications.show({
       title: "Ödeme Başarılı!",
@@ -53,8 +50,7 @@ export function Dashboard() {
         records={records}
         onPayBill={openPaymentForm}
         onShowDetails={(e) => {
-          console.log(e, "todo");
-          openDetails(); // Open the details drawer
+          openDetails();
         }}
       />
       <Drawer opened={paymentOpened} onClose={closePayment} title="Ödeme">

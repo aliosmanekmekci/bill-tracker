@@ -7,9 +7,9 @@ export function BillDetails() {
   const [billData, setBillData] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching bill details for billId:", billId); // Debugging statement
+
     fetchBill(billId).then((response) => {
-      console.log("Fetched bill details:", response); // Debugging statement
+
       setBillData(response);
     });
   }, [billId]);

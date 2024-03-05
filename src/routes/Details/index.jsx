@@ -8,7 +8,7 @@ export default function Details() {
 
   useEffect(() => {
     fetch(
-      "https://newsdata.io/api/1/news?apikey=pub_39398456c4ae1777ca05a2a6dc24fd9e30280&q=pizza"
+      " https://newsdata.io/api/1/news?country=tr&apikey=pub_39398456c4ae1777ca05a2a6dc24fd9e30280 "
     )
       .then((response) => {
         if (!response.ok) {
@@ -17,7 +17,7 @@ export default function Details() {
         return response.json();
       })
       .then((data) => {
-        setNewsItems(data.results); // Access the correct field from the API response
+        setNewsItems(data.results);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -39,7 +39,15 @@ export default function Details() {
     newsItems.map((newsItem) => (
       <Accordion.Item key={newsItem.article_id} value={newsItem.title}>
         <Accordion.Control>{newsItem.title}</Accordion.Control>
-        <Accordion.Panel>{newsItem.description}</Accordion.Panel>
+        <Accordion.Panel>
+          {newsItem.description}
+          <img
+            src=" https://static.daktilo.com/sites/496/uploads/2024/03/05/large/5-3.jpg"
+            alt=""
+            width="100px"
+            height="100px"
+          />
+        </Accordion.Panel>
       </Accordion.Item>
     ));
 

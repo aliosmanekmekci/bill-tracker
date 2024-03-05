@@ -30,16 +30,14 @@ export function UpcomingPaymentsList(props) {
         >
           ₺{formatNumber(record.balance)}
           <Link href={`/bill/${record.id}`}>
-            <a>
-              <Button
-                variant="default"
-                color="red"
-                size="xs"
-                disabled={isDeptZero}
-              >
-                Detay
-              </Button>
-            </a>
+            <Button
+              variant="default"
+              color="red"
+              size="xs"
+              disabled={isDeptZero}
+            >
+              Detay
+            </Button>
           </Link>
           <Button
             onClick={() => props.onPayBill(record)}
