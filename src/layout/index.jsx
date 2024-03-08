@@ -43,7 +43,7 @@ export function AppLayout(props) {
         <NavLink
           active={location === "/news"}
           onClick={() => navigate("/news")}
-          label="Detaylar"
+          label="Haberler"
           leftSection={
             <IconAlignBoxBottomCenterFilled size="1rem" stroke={1.5} />
           }

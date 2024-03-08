@@ -1,10 +1,12 @@
+import { Button } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { useParams } from "wouter";
+import { useLocation, useParams } from "wouter";
 import { fetchBill } from "../../utils/request";
 
 export function BillDetails() {
   const { billId } = useParams();
   const [billData, setBillData] = useState(null);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     fetchBill(billId).then((response) => {
@@ -39,6 +41,8 @@ export function BillDetails() {
     },
   ];
 
+  const handleGoBack = () => setLocation("/dashboard");
+
   return (
     <div className="bill-details">
       <h1>Bill Details</h1>
@@ -50,6 +54,9 @@ export function BillDetails() {
           </p>
         ))}
       </div>
+      <Button variant="default" onClick={handleGoBack}>
+        Geri
+      </Button>
     </div>
   );
 }
