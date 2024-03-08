@@ -24,11 +24,7 @@ export function AppLayout(props) {
           <Title order={3} m={10}>
             Fatura Takip Sistemi
           </Title>
-          <MultiSelect
-            placeholder="Bul..."
-            data={["Borç", "Gecikme", "Alacak", "Bakiye"]}
-            searchable
-          />
+          
         </div>
       </AppShell.Header>
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Center, Drawer, Title } from "@mantine/core";
+import { Center, Drawer, MultiSelect, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 
@@ -9,12 +9,17 @@ import { UpcomingPaymentsList } from "../../component/UpcomingPaymentsList";
 import { fetchUpcomingBills } from "../../utils/request";
 import { BillDetails } from "../BillDetails";
 
+function filterRecords(records, typeFilters) {
+  return records.filter((rec) => typeFilters.some((type) => type === rec.type));
+}
+
 export function Dashboard() {
   const [records, setRecords] = useState([]);
   const [paymentOpened, { open: openPayment, close: closePayment }] =
     useDisclosure(false);
   const [detailsOpened, { open: openDetails, close: closeDetails }] =
     useDisclosure(false);
+  const [typeFilter, setTypeFilter] = useState([]);
 
   const fetchBills = async () => {
     const bills = await fetchUpcomingBills();
@@ -39,6 +44,13 @@ export function Dashboard() {
     fetchBills();
   };
 
+  const filteredRecords = typeFilter.length
+    ? filterRecords(records, typeFilter)
+    : records;
+
+  // console.log(filteredRecords);
+  // console.log(typeFilter);
+
   return (
     <>
       <Center>
@@ -46,8 +58,15 @@ export function Dashboard() {
           Hesap Dökümü
         </Title>
       </Center>
+      <MultiSelect
+        placeholder="Bul..."
+        data={["Borç", "Tahsilat", "Aidat", "Kira"]}
+        searchable
+        onChange={(e) => setTypeFilter(e)}
+        value={typeFilter}
+      />
       <UpcomingPaymentsList
-        records={records}
+        records={filteredRecords}
         onPayBill={openPaymentForm}
         onShowDetails={(e) => {
           openDetails();
@@ -57,7 +76,7 @@ export function Dashboard() {
         <BillPaymentForm onSubmit={onPayBill} />
       </Drawer>
       <Drawer opened={detailsOpened} onClose={closeDetails} title="Detaylar">
-        <BillDetails /> {/* Render the Details component inside the drawer */}
+        <BillDetails />
       </Drawer>
     </>
   );
