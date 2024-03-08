@@ -41,8 +41,8 @@ export function AppLayout(props) {
         />
 
         <NavLink
-          active={location === "/details"}
-          onClick={() => navigate("/details")}
+          active={location === "/news"}
+          onClick={() => navigate("/news")}
           label="Detaylar"
           leftSection={
             <IconAlignBoxBottomCenterFilled size="1rem" stroke={1.5} />

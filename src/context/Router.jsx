@@ -1,8 +1,8 @@
 import { Redirect, Route, Switch } from "wouter";
 
-import { Dashboard } from "../routes/Dashboard";
 import { BillDetails } from "../routes/BillDetails";
-import Details from "../routes/Details";
+import { Dashboard } from "../routes/Dashboard";
+import News from "../routes/News";
 
 export function Router() {
   return (
@@ -12,7 +12,7 @@ export function Router() {
           <Redirect to="/dashboard" />
         </Route>
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/details" component={Details} />
+        <Route path="/news" component={News} />
         <Route path="/bill/:billId" component={BillDetails} />
       </Switch>
     </>

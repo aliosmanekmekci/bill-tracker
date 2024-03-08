@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchNews } from "../../utils/request/news";
 import { NewsItemsList } from "./NewsItemsList";
 
-export default function Details() {
+export default function News() {
   const [newsItems, setNewsItems] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
