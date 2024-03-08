@@ -7,9 +7,7 @@ export function BillDetails() {
   const [billData, setBillData] = useState(null);
 
   useEffect(() => {
-
     fetchBill(billId).then((response) => {
-
       setBillData(response);
     });
   }, [billId]);
@@ -18,25 +16,39 @@ export function BillDetails() {
     return <div>Loading...</div>;
   }
 
+  const listItems = [
+    {
+      label: "ID",
+      value: billData.id,
+    },
+    {
+      label: "Date",
+      value: billData.date,
+    },
+    {
+      label: "Description",
+      value: billData.description,
+    },
+    {
+      label: "Type",
+      value: billData.type,
+    },
+    {
+      label: "Amount",
+      value: billData.dept,
+    },
+  ];
+
   return (
     <div className="bill-details">
       <h1>Bill Details</h1>
+
       <div className="bill-info">
-        <p>
-          <strong>ID:</strong> {billData.id}
-        </p>
-        <p>
-          <strong>Date:</strong> {billData.date}
-        </p>
-        <p>
-          <strong>Description:</strong> {billData.description}
-        </p>
-        <p>
-          <strong>Type:</strong> {billData.type}
-        </p>
-        <p>
-          <strong>Amount:</strong> ₺{billData.dept}
-        </p>
+        {listItems.map(({ label, value }) => (
+          <p key={label}>
+            <strong>{label}:</strong> {value}
+          </p>
+        ))}
       </div>
     </div>
   );
