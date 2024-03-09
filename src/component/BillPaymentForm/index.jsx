@@ -1,7 +1,7 @@
 import { Badge, Button, Card, Group, Text } from "@mantine/core";
 import classes from "./FeaturesCard.module.css";
 
-export function BillPaymentForm() {
+export function BillPaymentForm(props) {
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Group justify="space-between" mb="md">
@@ -25,7 +25,12 @@ export function BillPaymentForm() {
             </Text>
           </div>
 
-          <Button variant="default" radius="xl" style={{ flex: 1 }}>
+          <Button
+            variant="default"
+            radius="xl"
+            style={{ flex: 1 }}
+            onClick={() => props.onSubmit()}
+          >
             Hemen Öde
           </Button>
         </Group>
