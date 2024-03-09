@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
+
 import { Center, Drawer, Input, MultiSelect, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 
-import { useEffect, useState } from "react";
 import { BillPaymentForm } from "../../component/BillPaymentForm";
 import { UpcomingPaymentsList } from "../../component/UpcomingPaymentsList";
 import { fetchUpcomingBills } from "../../utils/request";
@@ -15,12 +16,16 @@ function filterRecords(records, typeFilters) {
 
 export function Dashboard() {
   const [records, setRecords] = useState([]);
-  const [paymentOpened, { open: openPayment, close: closePayment }] =
-    useDisclosure(false);
+  const [
+    paymentOpened,
+    { open: openPaymentDrawer, close: closePaymentDrawer },
+  ] = useDisclosure(false);
   const [detailsOpened, { open: openDetails, close: closeDetails }] =
     useDisclosure(false);
+
   const [typeFilter, setTypeFilter] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [selectedBill, setSelectedBill] = useState(null);
 
   const fetchBills = async () => {
     const bills = await fetchUpcomingBills();
@@ -32,16 +37,15 @@ export function Dashboard() {
   }, []);
 
   const openPaymentForm = (bill) => {
-    openPayment();
+    setSelectedBill(bill);
+    openPaymentDrawer();
   };
 
   const onPayBill = (bill) => {
-    // await apiyeodemeyaptirt()
     notifications.show({
       title: "Ödeme Başarılı!",
       message: "Bizi tercih ettiğiniz için teşekkür ederiz.",
     });
-    // datayi yenile
     fetchBills();
   };
 
@@ -50,11 +54,10 @@ export function Dashboard() {
     : records;
 
   const filteredSearchText = searchText.length
-    ? records.filter((desc) => searchTexts.some((desc) => desc === rec.description))
+    ? records.filter((desc) =>
+        searchTexts.some((desc) => desc === rec.description)
+      )
     : records;
-
-  console.log(filteredRecords);
-  console.log(typeFilter);
 
   return (
     <>
@@ -79,8 +82,8 @@ export function Dashboard() {
           openDetails();
         }}
       />
-      <Drawer opened={paymentOpened} onClose={closePayment} title="">
-        <BillPaymentForm onSubmit={onPayBill} />
+      <Drawer opened={paymentOpened} onClose={closePaymentDrawer}>
+        <BillPaymentForm onSubmit={onPayBill} bill={selectedBill} />
       </Drawer>
       <Drawer opened={detailsOpened} onClose={closeDetails} title="Detaylar">
         <BillDetails />
