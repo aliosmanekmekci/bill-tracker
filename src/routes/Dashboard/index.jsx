@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Center, Drawer, MultiSelect, Title } from "@mantine/core";
+import { Center, Drawer, Input, MultiSelect, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 
@@ -20,6 +20,7 @@ export function Dashboard() {
   const [detailsOpened, { open: openDetails, close: closeDetails }] =
     useDisclosure(false);
   const [typeFilter, setTypeFilter] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   const fetchBills = async () => {
     const bills = await fetchUpcomingBills();
@@ -48,8 +49,12 @@ export function Dashboard() {
     ? filterRecords(records, typeFilter)
     : records;
 
-  // console.log(filteredRecords);
-  // console.log(typeFilter);
+  const filteredSearchText = searchText.length
+    ? records.filter((desc) => searchTexts.some((desc) => desc === rec.description))
+    : records;
+
+  console.log(filteredRecords);
+  console.log(typeFilter);
 
   return (
     <>
@@ -65,6 +70,8 @@ export function Dashboard() {
         onChange={(e) => setTypeFilter(e)}
         value={typeFilter}
       />
+
+      <Input value={searchText} onChange={(e) => setSearchText(e)} />
       <UpcomingPaymentsList
         records={filteredRecords}
         onPayBill={openPaymentForm}
@@ -72,7 +79,7 @@ export function Dashboard() {
           openDetails();
         }}
       />
-      <Drawer opened={paymentOpened} onClose={closePayment} title="Ödeme">
+      <Drawer opened={paymentOpened} onClose={closePayment} title="">
         <BillPaymentForm onSubmit={onPayBill} />
       </Drawer>
       <Drawer opened={detailsOpened} onClose={closeDetails} title="Detaylar">
