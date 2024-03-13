@@ -72,9 +72,11 @@ export function Dashboard() {
         searchable
         onChange={(e) => setTypeFilter(e)}
         value={typeFilter}
+        mb="40px"
+        w="200px"
       />
 
-      <Input value={searchText} onChange={(e) => setSearchText(e)} />
+      {/* <Input value={searchText} onChange={(e) => setSearchText(e)} /> */}
       <UpcomingPaymentsList
         records={filteredRecords}
         onPayBill={openPaymentForm}
