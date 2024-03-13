@@ -1,7 +1,7 @@
 import { Badge, Button, Card, Group, Text } from "@mantine/core";
 import classes from "./FeaturesCard.module.css";
 
-export function BillPaymentForm({ bill }) {
+export function BillPaymentForm({ bill, onSubmit }) {
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Group justify="space-between" mb="md">
@@ -29,7 +29,7 @@ export function BillPaymentForm({ bill }) {
             variant="default"
             radius="xl"
             style={{ flex: 1 }}
-            onClick={() => props.onSubmit()}
+            onClick={() => onSubmit()}
           >
             Hemen Öde
           </Button>
